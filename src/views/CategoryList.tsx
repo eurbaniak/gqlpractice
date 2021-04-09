@@ -1,6 +1,7 @@
 import React from "react";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 
 const LIST_CATEGORIES_QUERY = gql`
   {
@@ -21,7 +22,11 @@ const CategoryList = () => {
         {loading
           ? null
           : data.categories.map((c: any) => {
-              return <li key={c.id}>{c.name}</li>;
+              return (
+                <li key={c.id}>
+                  <Link to={`/category/${c.id}`}>{c.name}</Link>
+                </li>
+              );
             })}
       </ul>
     </div>
